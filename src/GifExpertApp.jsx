@@ -10,32 +10,55 @@ export const GifExpertApp = () => {
     if(categories.includes(newCategory)) return;
 
     setCategories([newCategory, ...categories]);
-    console.log(categories);
     // setCategories(cat => [...cat,'Valorant']);
   }
 
-  return (
-    <>
-      <h1>Buscador de Gifs</h1>
+  const onDeleteCategory = (e) => {
+    
+    const category = e.target.getAttribute('data-category');
+    
+    const index = categories.indexOf(category);
 
+    if(index > -1){
+      setCategories(categories.filter((cat) => cat !== category));
+    }
+  }
+
+  return (
+    categories && (
+      <>
+        <h1>Buscador de Gifs</h1>
+
+        
+        <AddCategory 
+          // setCategories={setCategories}
+          key="input"
+          onNewCategory={onAddCategory}
+        />
       
-      <AddCategory 
-        // setCategories={setCategories}
-        onNewCategory={onAddCategory}
-      />
-      
-      {
-        categories.map((category) => 
-          (
-            <GifGrid 
-              key={category} 
-              category={category}
-            />
+        {
+          categories.map((category) => 
+            (
+              <>
+                <button 
+                  key={category + 'btn'} 
+                  className='btn-delete'
+                  data-category={category}
+                  onClick={onDeleteCategory}>
+                    
+                X</button>
+
+                <GifGrid 
+                  key={category} 
+                  category={category}
+                />
+              </>
+            )
           )
-        )
-      }
-      
-      
-    </>
+        }
+        
+        
+      </>
+    )
   )
 }

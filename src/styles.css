@@ -61,3 +61,15 @@ h3 {
 .card img {
   width: 100%;
 }
+
+.btn-delete{
+  background-color: rgb(212, 61, 61);
+  border-radius: 0.5em;
+  color: white;
+  border-width: 0.05em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  padding-left: 0.7em;
+  padding-right: 0.7em;
+  margin: 0.5em;
+}
